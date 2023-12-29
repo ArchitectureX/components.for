@@ -1,41 +1,38 @@
-# @architecturex/components.renderif
+# @architecturex/components.for
 
-## RenderIf
+## For
 
-The RenderIf component is a simple yet versatile React component designed to conditionally render its children based on the truthiness of the provided props. This component enhances readability and maintainability of conditional rendering logic in React applications.
+The `For` component is a utility component for React, designed to simplify the process of rendering lists. It takes an array of items and a child rendering function, and renders each item according to the provided function.
+
+The For component is built with TypeScript and provides generic type support to ensure type safety.
 
 ### Installation
 
-`npm install @architecturex/components.renderif`
+`npm install @architecturex/components.for`
 
 ### Props
 
-- **children:** The content to be conditionally rendered. It can be a ReactElement or a string.
-- **isTrue:** A boolean indicating whether the children should be rendered.
-- **isFalse:** An optional boolean to provide an alternative condition for rendering.
+- **each:** An array of items to be rendered.
+- **children:** A render function that takes an item and its index as arguments.
 
 ### Usage
 
 ```javascript
-import RenderIf from '@architecturex/components.renderif'
+import For from '@architecturex/components.for'
 
 const MyComponent = () => {
+  const items = ['Item 1', 'Item 2', 'Item 3']
+
   return (
     <div>
-      <RenderIf isTrue={true}>
-        <p>This will be rendered because isTrue is true</p>
-      </RenderIf>
-
-      <RenderIf isFalse={false}>
-        <p>This will be rendered because isFalse is false</p>
-      </RenderIf>
-
-      <RenderIf isTrue={false}>
-        <p>This will not be rendered because isTrue is false</p>
-      </RenderIf>
+      <For each={items}>
+        {(item, index) => <div key={index}>{item}</div>}
+      </For>
     </div>
   )
 }
+
+export default MyComponent;
 ```
 
 ### Contribution
